@@ -4,30 +4,42 @@ import { useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { bookingRooms, hotel, paymentMethods } from "@/data/hotel";
 
+type StayType = "night" | "day";
+
 function formatMoney(value: number) {
   return new Intl.NumberFormat("vi-VN").format(value) + "đ";
 }
 
-function getNights(checkIn: string, checkOut: string) {
+function getToday() {
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  return today.toISOString().split("T")[0];
+}
+
+function getUnits(checkIn: string, checkOut: string) {
   if (!checkIn || !checkOut) return 1;
 
   const start = new Date(checkIn);
   const end = new Date(checkOut);
   const diff = end.getTime() - start.getTime();
-  const nights = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  const units = Math.ceil(diff / (1000 * 60 * 60 * 24));
 
-  return nights > 0 ? nights : 1;
+  return units > 0 ? units : 1;
 }
 
 export default function BookingClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const today = getToday();
 
-  const defaultRoom =
+  const initialRoom =
     searchParams.get("room") || bookingRooms[0]?.id || "standard";
 
+  const initialStayType =
+    searchParams.get("stayType") === "day" ? "day" : "night";
+
   const [form, setForm] = useState({
-    roomId: defaultRoom,
+    roomId: initialRoom,
     checkIn: searchParams.get("checkIn") || "",
     checkOut: searchParams.get("checkOut") || "",
     guests: searchParams.get("guests") || "2",
@@ -36,6 +48,7 @@ export default function BookingClient() {
     email: "",
     note: "",
     paymentMethod: "pay-at-hotel",
+    stayType: initialStayType as StayType,
   });
 
   const selectedRoom = useMemo(() => {
@@ -51,18 +64,33 @@ export default function BookingClient() {
     );
   }, [form.paymentMethod]);
 
-  const nights = getNights(form.checkIn, form.checkOut);
-  const total = selectedRoom.price * nights;
+  const currentUnitPrice =
+    form.stayType === "night"
+      ? selectedRoom.nightPrice
+      : selectedRoom.dayPrice;
+
+  const units = getUnits(form.checkIn, form.checkOut);
+  const total = currentUnitPrice * units;
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) {
     const { name, value } = e.target;
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => {
+      const next = {
+        ...prev,
+        [name]: value,
+      };
+
+      if (name === "checkIn" && next.checkOut && next.checkOut < value) {
+        next.checkOut = value;
+      }
+
+      return next;
+    });
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -73,7 +101,7 @@ export default function BookingClient() {
       roomId: selectedRoom.id,
       checkIn: form.checkIn,
       checkOut: form.checkOut,
-      nights: String(nights),
+      units: String(units),
       guests: form.guests,
       name: form.name,
       phone: form.phone,
@@ -81,6 +109,7 @@ export default function BookingClient() {
       note: form.note || "Không có",
       paymentMethod: selectedPayment.name,
       total: String(total),
+      stayType: form.stayType === "night" ? "Qua đêm" : "Cả ngày",
     });
 
     router.push(`/booking-success?${params.toString()}`);
@@ -94,6 +123,7 @@ export default function BookingClient() {
             <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0F2F3A] text-sm font-black text-[#C9A45C]">
               LH
             </div>
+
             <div>
               <p className="font-black text-[#111827]">{hotel.shortName}</p>
               <p className="text-xs font-semibold text-[#6B7280]">
@@ -117,78 +147,25 @@ export default function BookingClient() {
             <p className="font-black uppercase tracking-[0.25em] text-[#C9A45C]">
               Đặt phòng
             </p>
+
             <h1 className="mt-3 text-4xl font-black tracking-tight text-[#111827] md:text-6xl">
-              Xác nhận thông tin lưu trú
+              Hoàn tất thông tin đặt phòng
             </h1>
+
             <p className="mt-4 max-w-2xl leading-8 text-[#5F6673]">
-              Chọn loại phòng, ngày lưu trú và phương thức thanh toán. Le House
-              sẽ liên hệ xác nhận phòng trống trước khi giữ phòng chính thức.
+              Nhập thông tin lưu trú, kiểm tra lại phòng đã chọn và xác nhận đặt
+              phòng tại Le House Hotel.
             </p>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="grid gap-8 md:grid-cols-[1fr_0.85fr]"
+            className="grid gap-8 md:grid-cols-[1fr_0.78fr]"
           >
             <div className="space-y-6">
               <div className="rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
                 <h2 className="text-2xl font-black text-[#111827]">
-                  Chọn loại phòng
-                </h2>
-
-                <div className="mt-5 grid gap-4">
-                  {bookingRooms.map((room) => (
-                    <label
-                      key={room.id}
-                      className={`grid cursor-pointer gap-4 rounded-[1.5rem] border p-4 transition md:grid-cols-[140px_1fr_auto] ${
-                        form.roomId === room.id
-                          ? "border-[#0F2F3A] bg-[#F4EFE4]"
-                          : "border-black/10 bg-white hover:bg-[#FAF7F0]"
-                      }`}
-                    >
-                      <img
-                        src={room.image}
-                        alt={room.name}
-                        className="h-32 w-full rounded-[1.2rem] object-cover md:h-28"
-                      />
-
-                      <div>
-                        <div className="flex items-center gap-3">
-                          <input
-                            type="radio"
-                            name="roomId"
-                            value={room.id}
-                            checked={form.roomId === room.id}
-                            onChange={handleChange}
-                          />
-                          <p className="font-black text-[#111827]">
-                            {room.name}
-                          </p>
-                        </div>
-
-                        <p className="mt-2 text-sm leading-6 text-[#5F6673]">
-                          {room.desc}
-                        </p>
-
-                        <p className="mt-3 text-sm font-black text-[#0F2F3A]">
-                          Còn {room.available} phòng trống
-                        </p>
-                      </div>
-
-                      <div className="text-left md:text-right">
-                        <p className="text-xl font-black text-[#0F2F3A]">
-                          {formatMoney(room.price)}
-                        </p>
-                        <p className="text-sm text-[#6B7280]">/ đêm</p>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-black/5 md:p-6">
-                <h2 className="text-2xl font-black text-[#111827]">
-                  Thông tin đặt phòng
+                  Thông tin lưu trú
                 </h2>
 
                 <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -200,6 +177,7 @@ export default function BookingClient() {
                       required
                       type="date"
                       name="checkIn"
+                      min={today}
                       value={form.checkIn}
                       onChange={handleChange}
                       className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none focus:border-[#0F2F3A]"
@@ -214,6 +192,7 @@ export default function BookingClient() {
                       required
                       type="date"
                       name="checkOut"
+                      min={form.checkIn || today}
                       value={form.checkOut}
                       onChange={handleChange}
                       className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none focus:border-[#0F2F3A]"
@@ -235,6 +214,21 @@ export default function BookingClient() {
                       <option value="3">3 khách</option>
                       <option value="4">4 khách</option>
                       <option value="5+">5+ khách</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="mb-2 block text-sm font-black text-[#111827]">
+                      Hình thức lưu trú
+                    </label>
+                    <select
+                      name="stayType"
+                      value={form.stayType}
+                      onChange={handleChange}
+                      className="w-full rounded-2xl border border-black/10 px-4 py-3 outline-none focus:border-[#0F2F3A]"
+                    >
+                      <option value="night">Qua đêm</option>
+                      <option value="day">Cả ngày</option>
                     </select>
                   </div>
 
@@ -294,6 +288,87 @@ export default function BookingClient() {
                   />
                 </div>
               </div>
+
+              <div className="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5">
+                <div className="grid md:grid-cols-[0.95fr_1.05fr]">
+                  <div className="relative min-h-[280px] overflow-hidden">
+                    <img
+                      src={selectedRoom.image}
+                      alt={selectedRoom.name}
+                      className="h-full min-h-[280px] w-full object-cover"
+                    />
+
+                    <div className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-sm font-black text-[#0F2F3A] shadow-sm">
+                      Còn {selectedRoom.available} phòng
+                    </div>
+                  </div>
+
+                  <div className="p-5 md:p-6">
+                    <p className="font-black uppercase tracking-[0.2em] text-[#C9A45C]">
+                      Phòng đã chọn
+                    </p>
+
+                    <h2 className="mt-2 text-3xl font-black text-[#111827]">
+                      {selectedRoom.name}
+                    </h2>
+
+                    <p className="mt-3 leading-7 text-[#5F6673]">
+                      {selectedRoom.desc}
+                    </p>
+
+                    <div className="mt-5 rounded-[1.5rem] bg-[#F4EFE4] p-4">
+                      <div className="flex items-end justify-between gap-4">
+                        <div>
+                          <p className="text-sm font-bold text-[#6B7280]">
+                            Giá hiện tại
+                          </p>
+                          <p className="mt-1 text-3xl font-black text-[#0F2F3A]">
+                            {formatMoney(currentUnitPrice)}
+                          </p>
+                          <p className="text-sm font-bold text-[#6B7280]">
+                            {form.stayType === "night" ? "/ đêm" : "/ ngày"}
+                          </p>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="text-sm font-bold text-[#6B7280]">
+                            Hình thức
+                          </p>
+                          <p className="mt-1 font-black text-[#0F2F3A]">
+                            {form.stayType === "night" ? "Qua đêm" : "Cả ngày"}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-5">
+                      <label className="mb-2 block text-sm font-black text-[#111827]">
+                        Đổi phòng trực tiếp
+                      </label>
+
+                      <select
+                        name="roomId"
+                        value={form.roomId}
+                        onChange={handleChange}
+                        className="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 font-bold text-[#0F2F3A] outline-none focus:border-[#0F2F3A]"
+                      >
+                        {bookingRooms.map((room) => {
+                          const price =
+                            form.stayType === "night"
+                              ? room.nightPrice
+                              : room.dayPrice;
+
+                          return (
+                            <option key={room.id} value={room.id}>
+                              {room.name} - {formatMoney(price)}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <aside className="md:sticky md:top-24">
@@ -303,22 +378,21 @@ export default function BookingClient() {
                 </p>
 
                 <h2 className="mt-3 text-3xl font-black">
-                  Thông tin đặt phòng
+                  Chi tiết đặt phòng
                 </h2>
-
-                <div className="mt-6 overflow-hidden rounded-[1.5rem] bg-white/10">
-                  <img
-                    src={selectedRoom.image}
-                    alt={selectedRoom.name}
-                    className="h-52 w-full object-cover"
-                  />
-                </div>
 
                 <div className="mt-6 space-y-4 text-white/85">
                   <div className="flex justify-between gap-4">
                     <span>Loại phòng</span>
                     <strong className="text-right text-white">
                       {selectedRoom.name}
+                    </strong>
+                  </div>
+
+                  <div className="flex justify-between gap-4">
+                    <span>Hình thức</span>
+                    <strong className="text-white">
+                      {form.stayType === "night" ? "Qua đêm" : "Cả ngày"}
                     </strong>
                   </div>
 
@@ -330,14 +404,18 @@ export default function BookingClient() {
                   </div>
 
                   <div className="flex justify-between gap-4">
-                    <span>Số đêm</span>
-                    <strong className="text-white">{nights}</strong>
+                    <span>
+                      {form.stayType === "night" ? "Số đêm" : "Số ngày"}
+                    </span>
+                    <strong className="text-white">{units}</strong>
                   </div>
 
                   <div className="flex justify-between gap-4">
-                    <span>Giá mỗi đêm</span>
+                    <span>
+                      Giá mỗi {form.stayType === "night" ? "đêm" : "ngày"}
+                    </span>
                     <strong className="text-white">
-                      {formatMoney(selectedRoom.price)}
+                      {formatMoney(currentUnitPrice)}
                     </strong>
                   </div>
                 </div>
@@ -381,15 +459,17 @@ export default function BookingClient() {
                 <div className="mt-6 border-t border-white/15 pt-6">
                   <div className="flex items-end justify-between gap-4">
                     <span className="font-bold text-white/85">
-                      Tổng tạm tính
+                      Tổng thanh toán
                     </span>
                     <strong className="text-3xl text-[#C9A45C]">
                       {formatMoney(total)}
                     </strong>
                   </div>
+
                   <p className="mt-2 text-sm text-white/60">
-                    Giá sẽ được nhân viên xác nhận lại theo tình trạng phòng
-                    thực tế.
+                    Tổng tiền được tính theo{" "}
+                    {form.stayType === "night" ? "số đêm" : "số ngày"} và loại
+                    phòng đã chọn.
                   </p>
                 </div>
 
@@ -397,7 +477,7 @@ export default function BookingClient() {
                   type="submit"
                   className="mt-7 w-full rounded-full bg-white px-6 py-4 font-black text-[#0F2F3A] transition hover:-translate-y-0.5 hover:bg-[#F4EFE4]"
                 >
-                  Xác nhận đặt phòng
+                  Đặt phòng
                 </button>
               </div>
             </aside>

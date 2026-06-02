@@ -1,4 +1,4 @@
-import { hotel, phoneLink, zaloLink } from "@/data/hotel";
+import { hotel, phoneLink } from "@/data/hotel";
 
 export default function FinalCTA() {
   return (
@@ -9,26 +9,25 @@ export default function FinalCTA() {
         </p>
 
         <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">
-          Cần phòng tại Liên Chiểu, Đà Nẵng?
+          Sẵn sàng lưu trú tại Le House?
         </h2>
 
         <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/75">
-          Liên hệ Le House để kiểm tra phòng trống, nhận giá tốt và được tư vấn
-          cơ sở phù hợp với lịch trình của bạn.
+          Chọn ngày lưu trú, loại phòng và gửi yêu cầu đặt phòng. Le House sẽ
+          liên hệ xác nhận tình trạng phòng và mức giá phù hợp nhất.
         </p>
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a
-            href={zaloLink}
-            target="_blank"
-            className="rounded-full bg-white px-8 py-4 font-black text-[#0F2F3A] hover:bg-[#FAF7F0]"
+            href="/booking"
+            className="rounded-full bg-white px-8 py-4 font-black text-[#0F2F3A] transition hover:-translate-y-0.5 hover:bg-[#F4EFE4]"
           >
-            Nhắn Zalo đặt phòng
+            Kiểm tra phòng trống
           </a>
 
           <a
             href={phoneLink}
-            className="rounded-full border border-white/30 px-8 py-4 font-black text-white hover:bg-white/10"
+            className="rounded-full border border-white/30 px-8 py-4 font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10"
           >
             Gọi {hotel.hotline}
           </a>

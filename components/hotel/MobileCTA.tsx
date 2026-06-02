@@ -12,7 +12,7 @@ export default function MobileCTA() {
         </a>
 
         <a
-          href="/booking"
+          href="/#rooms"
           className="rounded-2xl bg-[#0F2F3A] px-4 py-3 text-center text-sm font-black text-white"
         >
           Đặt phòng

@@ -28,7 +28,7 @@ export default function Header() {
           </a>
 
           <a
-            href="/booking"
+            href="/#rooms"
             className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
           >
             Đặt phòng
@@ -59,13 +59,13 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href={phoneLink}
-            className="hidden rounded-full border border-[#0F2F3A]/20 px-4 py-2 text-sm font-bold text-[#0F2F3A] transition hover:bg-[#F4EFE4] sm:block"
+            className="hidden rounded-full border border-[#0F2F3A]/20 px-5 py-2.5 text-sm font-bold text-[#0F2F3A] transition hover:bg-[#F4EFE4] sm:block"
           >
-            {hotel.hotline}
+            Liên hệ
           </a>
 
           <a
-            href="/booking"
+            href="/#rooms"
             className="rounded-full bg-[#0F2F3A] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:-translate-y-0.5 hover:bg-[#09232C]"
           >
             Đặt phòng

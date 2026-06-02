@@ -114,18 +114,19 @@ export const hotel = {
       answer:
         "Le House có 2 cơ sở tại khu vực Liên Chiểu, gồm 134–136 Lê Văn Thịnh và 97 Phú Lộc 22.",
     },
-    {
-      question: "Đặt phòng bằng cách nào?",
-      answer:
-        "Khách có thể gọi hotline hoặc nhắn Zalo để kiểm tra phòng trống, nhận báo giá và được tư vấn cơ sở phù hợp.",
-    },
+  {
+  question: "Đặt phòng bằng cách nào?",
+  answer:
+    "Khách có thể xem giá phòng, số phòng còn trống, chọn ngày lưu trú và đặt phòng trực tiếp trên website. Sau khi đặt phòng thành công, khách có thể gửi thông tin qua Zalo để khách sạn hỗ trợ nhanh hơn nếu cần.",
+},
   ],
 };
 export const bookingRooms = [
   {
     id: "standard",
     name: "Phòng tiêu chuẩn",
-    price: 400000,
+    nightPrice: 400000,
+    dayPrice: 300000,
     available: 5,
     image: "/images/lehouse/room-1.jpg",
     desc: "Phù hợp cho 1–2 khách, nghỉ ngắn ngày hoặc đi công tác.",
@@ -133,7 +134,8 @@ export const bookingRooms = [
   {
     id: "double",
     name: "Phòng đôi tiện nghi",
-    price: 550000,
+    nightPrice: 550000,
+    dayPrice: 420000,
     available: 3,
     image: "/images/lehouse/room-2.jpg",
     desc: "Phù hợp cho cặp đôi, bạn bè hoặc gia đình nhỏ.",
@@ -141,13 +143,13 @@ export const bookingRooms = [
   {
     id: "studio",
     name: "Studio lưu trú",
-    price: 700000,
+    nightPrice: 700000,
+    dayPrice: 550000,
     available: 2,
     image: "/images/lehouse/room-3.jpg",
     desc: "Không gian rộng hơn, phù hợp khách lưu trú dài ngày.",
   },
 ];
-
 export const paymentMethods = [
   {
     id: "pay-at-hotel",

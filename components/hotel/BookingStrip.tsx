@@ -1,17 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { bookingRooms } from "@/data/hotel";
+import { useMemo, useState } from "react";
+
+type StayType = "night" | "day";
+
+function getToday() {
+  const today = new Date();
+  today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+  return today.toISOString().split("T")[0];
+}
 
 export default function BookingStrip() {
-  const router = useRouter();
+  const today = useMemo(() => getToday(), []);
 
   const [form, setForm] = useState({
-    room: bookingRooms[0]?.id || "standard",
     checkIn: "",
     checkOut: "",
     guests: "2",
+    stayType: "night" as StayType,
   });
 
   function handleChange(
@@ -19,23 +25,44 @@ export default function BookingStrip() {
   ) {
     const { name, value } = e.target;
 
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setForm((prev) => {
+      const next = {
+        ...prev,
+        [name]: value,
+      };
+
+      if (name === "checkIn" && next.checkOut && next.checkOut < value) {
+        next.checkOut = value;
+      }
+
+      return next;
+    });
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const params = new URLSearchParams({
-      room: form.room,
-      checkIn: form.checkIn,
-      checkOut: form.checkOut,
-      guests: form.guests,
-    });
+    localStorage.setItem("lehouse_checkIn", form.checkIn);
+    localStorage.setItem("lehouse_checkOut", form.checkOut);
+    localStorage.setItem("lehouse_guests", form.guests);
+    localStorage.setItem("lehouse_stayType", form.stayType);
 
-    router.push(`/booking?${params.toString()}`);
+    window.dispatchEvent(
+      new CustomEvent("lehouse-booking-updated", {
+        detail: {
+          checkIn: form.checkIn,
+          checkOut: form.checkOut,
+          guests: form.guests,
+          stayType: form.stayType,
+        },
+      })
+    );
+
+    const roomsSection = document.getElementById("rooms");
+    roomsSection?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }
 
   return (
@@ -44,18 +71,20 @@ export default function BookingStrip() {
         onSubmit={handleSubmit}
         className="mx-auto max-w-6xl rounded-[2rem] border border-black/5 bg-white p-3 shadow-2xl shadow-black/10 md:p-4"
       >
-        <div className="grid gap-3 md:grid-cols-[1fr_1fr_0.85fr_1.15fr_0.9fr]">
+        <div className="grid gap-3 md:grid-cols-[1fr_1fr_0.85fr_0.95fr_0.95fr]">
           <div className="rounded-[1.3rem] bg-[#F4EFE4] px-4 py-3.5">
             <label className="block text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Nhận phòng
             </label>
+
             <input
               required
               type="date"
               name="checkIn"
+              min={today}
               value={form.checkIn}
               onChange={handleChange}
-              className="mt-2 w-full bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
+              className="mt-2 w-full cursor-pointer bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
             />
           </div>
 
@@ -63,13 +92,15 @@ export default function BookingStrip() {
             <label className="block text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Trả phòng
             </label>
+
             <input
               required
               type="date"
               name="checkOut"
+              min={form.checkIn || today}
               value={form.checkOut}
               onChange={handleChange}
-              className="mt-2 w-full bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
+              className="mt-2 w-full cursor-pointer bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
             />
           </div>
 
@@ -77,11 +108,12 @@ export default function BookingStrip() {
             <label className="block text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Số khách
             </label>
+
             <select
               name="guests"
               value={form.guests}
               onChange={handleChange}
-              className="mt-2 w-full bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
+              className="mt-2 w-full cursor-pointer bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
             >
               <option value="1">1 khách</option>
               <option value="2">2 khách</option>
@@ -93,19 +125,17 @@ export default function BookingStrip() {
 
           <div className="rounded-[1.3rem] bg-[#F4EFE4] px-4 py-3.5">
             <label className="block text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
-              Loại phòng
+              Hình thức
             </label>
+
             <select
-              name="room"
-              value={form.room}
+              name="stayType"
+              value={form.stayType}
               onChange={handleChange}
-              className="mt-2 w-full bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
+              className="mt-2 w-full cursor-pointer bg-transparent text-[15px] font-black text-[#0F2F3A] outline-none"
             >
-              {bookingRooms.map((room) => (
-                <option key={room.id} value={room.id}>
-                  {room.name}
-                </option>
-              ))}
+              <option value="night">Qua đêm</option>
+              <option value="day">Cả ngày</option>
             </select>
           </div>
 

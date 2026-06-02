@@ -24,14 +24,12 @@ export default function Location() {
                 <p className="mt-2 text-[#6B7280]">{hotel.address2}</p>
               </div>
             </div>
-
-            <a
-              href={zaloLink}
-              target="_blank"
-              className="mt-7 inline-flex rounded-full bg-[#0F2F3A] px-7 py-4 font-black text-white hover:bg-[#09232C]"
-            >
-              Liên hệ nhận chỉ đường
-            </a>
+<a
+  href="/booking"
+  className="mt-7 inline-flex rounded-full bg-[#0F2F3A] px-7 py-4 font-black text-white transition hover:-translate-y-0.5 hover:bg-[#09232C]"
+>
+  Đặt phòng tại Le House
+</a>
           </div>
 
           <div className="rounded-[2rem] bg-[#0F2F3A] p-7 text-white shadow-sm">
@@ -53,8 +51,7 @@ export default function Location() {
 
             <div className="mt-8 overflow-hidden rounded-3xl bg-white/10 p-6">
               <p className="text-sm font-semibold text-[#C9A45C]">
-                Khu vực lưu trú
-              </p>
+                  Lợi thế vị trí              </p>
               <p className="mt-2 text-lg font-bold">
                 Phù hợp cho khách cần nơi nghỉ sạch sẽ, riêng tư, dễ di chuyển
                 trong khu vực Liên Chiểu và các điểm lân cận.
