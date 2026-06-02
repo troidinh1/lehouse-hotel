@@ -111,11 +111,11 @@ export default function Rooms() {
             </p>
           </div>
 
-          <div className="inline-flex w-fit rounded-full border border-black/5 bg-white p-1 shadow-sm">
+          <div className="grid w-full grid-cols-2 rounded-full border border-black/5 bg-white p-1 shadow-sm md:inline-flex md:w-fit">
             <button
               type="button"
               onClick={() => changeStayType("night")}
-              className={`rounded-full px-5 py-2.5 text-sm font-black transition ${
+              className={`rounded-full px-4 py-2.5 text-sm font-black transition md:px-5 ${
                 stayType === "night"
                   ? "bg-[#0F2F3A] text-white"
                   : "text-[#0F2F3A] hover:bg-[#F4EFE4]"
@@ -127,7 +127,7 @@ export default function Rooms() {
             <button
               type="button"
               onClick={() => changeStayType("day")}
-              className={`rounded-full px-5 py-2.5 text-sm font-black transition ${
+              className={`rounded-full px-4 py-2.5 text-sm font-black transition md:px-5 ${
                 stayType === "day"
                   ? "bg-[#0F2F3A] text-white"
                   : "text-[#0F2F3A] hover:bg-[#F4EFE4]"
@@ -145,26 +145,26 @@ export default function Rooms() {
             return (
               <div
                 key={room.id}
-                className="group flex h-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/10"
+                className="group flex h-full flex-col overflow-hidden rounded-[1.7rem] bg-white shadow-sm ring-1 ring-black/5 transition duration-500 md:rounded-[2rem] md:hover:-translate-y-2 md:hover:shadow-2xl md:hover:shadow-black/15"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={room.image}
                     alt={room.name}
-                    className="h-64 w-full object-cover transition duration-700 group-hover:scale-105 md:h-80"
+                    className="h-60 w-full object-cover transition duration-1000 md:h-80 md:group-hover:scale-110"
                   />
 
-                  <div className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-sm font-black text-[#0F2F3A] shadow-sm">
+                  <div className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-xs font-black text-[#0F2F3A] shadow-sm md:text-sm">
                     Còn {room.available} phòng
                   </div>
 
-                  <div className="absolute bottom-4 right-4 rounded-full bg-[#0F2F3A] px-4 py-2 text-sm font-black text-white shadow-lg">
+                  <div className="absolute bottom-4 right-4 rounded-full bg-[#0F2F3A] px-3 py-2 text-xs font-black text-white shadow-lg md:px-4 md:text-sm">
                     {formatMoney(currentPrice)}
                     {getUnitLabel()}
                   </div>
                 </div>
 
-                <div className="flex flex-1 flex-col p-6 md:p-7">
+                <div className="flex flex-1 flex-col p-5 md:p-7">
                   <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#C9A45C]">
                     Le House Hotel
                   </p>
@@ -177,8 +177,8 @@ export default function Rooms() {
                     {room.desc}
                   </p>
 
-                  <div className="mt-6 rounded-[1.5rem] border border-[#0F2F3A]/10 bg-[#F4EFE4] p-4">
-                    <div className="flex items-center justify-between gap-4">
+                  <div className="mt-5 rounded-[1.5rem] border border-[#0F2F3A]/10 bg-[#F4EFE4] p-4">
+                    <div className="grid gap-4 sm:flex sm:items-center sm:justify-between">
                       <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
                           Còn trống
@@ -188,7 +188,7 @@ export default function Rooms() {
                         </p>
                       </div>
 
-                      <div className="text-right">
+                      <div className="sm:text-right">
                         <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
                           Giá {stayType === "night" ? "đêm" : "ngày"}
                         </p>
@@ -212,7 +212,7 @@ export default function Rooms() {
 
                   <a
                     href={getBookingHref(room.id)}
-                    className="mt-5 inline-flex w-full items-center justify-center rounded-[1.3rem] bg-[#0F2F3A] px-5 py-4 font-black text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:-translate-y-0.5 hover:bg-[#09232C] md:mt-auto"
+                    className="mt-5 inline-flex w-full items-center justify-center rounded-[1.3rem] bg-[#0F2F3A] px-5 py-4 font-black text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:bg-[#09232C] md:mt-auto md:hover:-translate-y-0.5"
                   >
                     Đặt phòng này
                   </a>

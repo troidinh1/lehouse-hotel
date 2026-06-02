@@ -12,22 +12,55 @@ import FAQ from "@/components/hotel/FAQ";
 import FinalCTA from "@/components/hotel/FinalCTA";
 import Footer from "@/components/hotel/Footer";
 import MobileCTA from "@/components/hotel/MobileCTA";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white pb-20 md:pb-0">
       <Header />
+
       <Hero />
-      <BookingStrip />
-      <WhyChoose />
-      <GuestTypes />
-      <Rooms />
-      <Amenities />
-      <Location />
-      <Gallery />
-      <Testimonials />
-      <FAQ />
-      <FinalCTA />
+
+      <ScrollReveal variant="zoom" delay={100}>
+        <BookingStrip />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={100}>
+        <WhyChoose />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={120}>
+        <GuestTypes />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={140}>
+        <Rooms />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-right" delay={120}>
+        <Amenities />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-left" delay={120}>
+        <Location />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={120}>
+        <Gallery />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={120}>
+        <Testimonials />
+      </ScrollReveal>
+
+      <ScrollReveal variant="fade-up" delay={120}>
+        <FAQ />
+      </ScrollReveal>
+
+      <ScrollReveal variant="zoom" delay={120}>
+        <FinalCTA />
+      </ScrollReveal>
+
       <Footer />
       <MobileCTA />
     </main>

@@ -59,6 +59,7 @@ export default function BookingStrip() {
     );
 
     const roomsSection = document.getElementById("rooms");
+
     roomsSection?.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -69,9 +70,9 @@ export default function BookingStrip() {
     <section className="relative z-20 -mt-8 px-4 md:-mt-12 md:px-6">
       <form
         onSubmit={handleSubmit}
-        className="mx-auto max-w-6xl rounded-[2rem] border border-black/5 bg-white p-3 shadow-2xl shadow-black/10 md:p-4"
+        className="mx-auto max-w-6xl rounded-[1.5rem] border border-black/5 bg-white p-3 shadow-2xl shadow-black/10 transition duration-500 md:rounded-[2rem] md:p-4 md:hover:-translate-y-1 md:hover:shadow-black/15"
       >
-        <div className="grid gap-3 md:grid-cols-[1fr_1fr_0.85fr_0.95fr_0.95fr]">
+        <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-[1fr_1fr_0.85fr_0.95fr_0.95fr]">
           <div className="rounded-[1.3rem] bg-[#F4EFE4] px-4 py-3.5">
             <label className="block text-[11px] font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Nhận phòng
@@ -141,7 +142,7 @@ export default function BookingStrip() {
 
           <button
             type="submit"
-            className="rounded-[1.3rem] bg-[#0F2F3A] px-5 py-4 text-sm font-black text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:-translate-y-0.5 hover:bg-[#09232C]"
+            className="rounded-[1.3rem] bg-[#0F2F3A] px-5 py-4 text-sm font-black text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:bg-[#09232C] sm:col-span-2 md:col-span-1 md:hover:-translate-y-0.5"
           >
             Kiểm tra phòng
           </button>
