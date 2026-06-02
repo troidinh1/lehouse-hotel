@@ -45,13 +45,12 @@ export default function Location() {
               <li>• Phù hợp khách công tác, du lịch và lưu trú ngắn ngày</li>
             </ul>
 
-            <div className="mt-8 overflow-hidden rounded-3xl bg-white/10 p-6">
-              <p className="text-sm text-white/70">Gợi ý demo</p>
-              <p className="mt-2 text-lg font-bold">
-                Sau này có link Google Maps chính xác thì gắn vào nút “Chỉ
-                đường” để khách bấm là đi được ngay.
-              </p>
-            </div>
+          <div className="mt-8 overflow-hidden rounded-3xl bg-white/10 p-6">
+  <p className="text-sm text-white/70">Khu vực lưu trú</p>
+  <p className="mt-2 text-lg font-bold">
+    Phù hợp cho khách cần nơi nghỉ sạch sẽ, riêng tư, dễ di chuyển trong khu vực Liên Chiểu và các điểm lân cận.
+  </p>
+</div>
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto mt-8 max-w-7xl border-t border-white/10 pt-6 text-sm text-gray-500">
-        © {new Date().getFullYear()} {hotel.name}. Website demo by Quân.
+        © {new Date().getFullYear()} {hotel.name}. All rights reserved.
       </div>
     </footer>
   );

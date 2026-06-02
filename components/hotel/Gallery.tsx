@@ -12,8 +12,7 @@ export default function Gallery() {
             Không gian lưu trú tại Le House
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-8 text-gray-600">
-            Một số hình ảnh phòng và không gian khách sạn. Khi làm bản chính
-            thức, chỉ cần thay ảnh thật của khách sạn vào đúng thư mục.
+            Hình ảnh phòng nghỉ, không gian lưu trú và các tiện ích tại Le House Hotel & Studio.
           </p>
         </div>
 

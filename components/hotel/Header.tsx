@@ -2,32 +2,34 @@ import { hotel, phoneLink, zaloLink } from "@/data/hotel";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-red-100 bg-white/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
         <a href="#" className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#8B1E2D] text-lg font-bold text-white">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0F2F3A] text-sm font-extrabold text-[#C9A45C] shadow-sm">
             LH
           </div>
 
-          <div>
-            <p className="text-base font-bold text-gray-900">
+          <div className="leading-tight">
+            <p className="text-base font-extrabold tracking-tight text-gray-950">
               {hotel.shortName}
             </p>
-            <p className="text-xs text-gray-500">Hotel & Studio</p>
+            <p className="text-xs font-medium text-gray-500">
+              Hotel & Studio
+            </p>
           </div>
         </a>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-gray-700 md:flex">
-          <a href="#rooms" className="hover:text-[#8B1E2D]">
+        <nav className="hidden items-center gap-8 text-sm font-semibold text-gray-700 md:flex">
+          <a href="#rooms" className="hover:text-[#0F2F3A]">
             Hạng phòng
           </a>
-          <a href="#amenities" className="hover:text-[#8B1E2D]">
+          <a href="#amenities" className="hover:text-[#0F2F3A]">
             Tiện nghi
           </a>
-          <a href="#location" className="hover:text-[#8B1E2D]">
+          <a href="#location" className="hover:text-[#0F2F3A]">
             Vị trí
           </a>
-          <a href="#gallery" className="hover:text-[#8B1E2D]">
+          <a href="#gallery" className="hover:text-[#0F2F3A]">
             Hình ảnh
           </a>
         </nav>
@@ -35,15 +37,15 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href={phoneLink}
-            className="hidden rounded-full border border-[#8B1E2D] px-4 py-2 text-sm font-semibold text-[#8B1E2D] hover:bg-red-50 sm:block"
+            className="hidden rounded-full border border-[#0F2F3A]/20 px-4 py-2 text-sm font-bold text-[#0F2F3A] hover:bg-[#FAF7F0] sm:block"
           >
-            Gọi ngay
+            {hotel.hotline}
           </a>
 
           <a
             href={zaloLink}
             target="_blank"
-            className="rounded-full bg-[#8B1E2D] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#721827]"
+            className="rounded-full bg-[#0F2F3A] px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-[#09232c]"
           >
             Đặt phòng
           </a>

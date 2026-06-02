@@ -3,7 +3,7 @@ export const hotel = {
   shortName: "Le House",
   slogan: "Khách sạn & căn hộ tiện nghi tại Liên Chiểu, Đà Nẵng",
   description:
-    "Le House Hotel & Studio mang đến không gian lưu trú sạch sẽ, thoáng sáng, phù hợp cho khách du lịch, công tác, cặp đôi và gia đình nhỏ khi đến Đà Nẵng.",
+    "Không gian lưu trú hiện đại, sạch sẽ và thoải mái dành cho khách du lịch, công tác, cặp đôi và gia đình nhỏ khi đến Đà Nẵng.",
 
   hotline: "0931 451 267",
   zalo: "0931451267",
@@ -17,28 +17,46 @@ export const hotel = {
   highlights: [
     "Gần biển Nguyễn Tất Thành",
     "2 cơ sở tại Liên Chiểu",
-    "Phòng studio sạch đẹp",
-    "Phù hợp công tác & du lịch",
+    "Phòng sạch, thoáng, tiện nghi",
+    "Phù hợp du lịch & công tác",
+  ],
+
+  stats: [
+    {
+      number: "2",
+      label: "Cơ sở lưu trú",
+    },
+    {
+      number: "24/7",
+      label: "Hỗ trợ khách hàng",
+    },
+    {
+      number: "400m+",
+      label: "Gần khu biển",
+    },
   ],
 
   rooms: [
     {
-      name: "Phòng đơn tiêu chuẩn",
-      desc: "Không gian gọn gàng, sạch sẽ, phù hợp cho 1–2 khách nghỉ ngắn ngày hoặc đi công tác.",
+      name: "Phòng tiêu chuẩn",
+      desc: "Không gian gọn gàng, sạch sẽ, đầy đủ tiện nghi cơ bản, phù hợp cho 1–2 khách nghỉ ngắn ngày hoặc đi công tác.",
       image: "/images/lehouse/room-1.jpg",
       price: "Liên hệ giá tốt",
+      features: ["1–2 khách", "Wi-Fi", "Máy lạnh", "Phòng tắm riêng"],
     },
     {
       name: "Phòng đôi tiện nghi",
-      desc: "Phù hợp cho cặp đôi, bạn bè hoặc gia đình nhỏ cần không gian nghỉ ngơi thoải mái.",
+      desc: "Không gian rộng rãi hơn, phù hợp cho cặp đôi, bạn bè hoặc gia đình nhỏ cần nơi nghỉ thoải mái tại Đà Nẵng.",
       image: "/images/lehouse/room-2.jpg",
       price: "Liên hệ giá tốt",
+      features: ["2–3 khách", "Giường đôi", "TV", "Không gian thoáng"],
     },
     {
-      name: "Studio lưu trú dài ngày",
-      desc: "Không gian rộng hơn, có khu sinh hoạt nhỏ, phù hợp cho khách cần ở nhiều ngày tại Đà Nẵng.",
+      name: "Studio lưu trú",
+      desc: "Không gian studio tiện nghi, phù hợp với khách cần lưu trú nhiều ngày, làm việc, nghỉ ngơi hoặc đi công tác dài ngày.",
       image: "/images/lehouse/room-3.jpg",
       price: "Liên hệ giá tốt",
+      features: ["Studio", "Bàn làm việc", "Lưu trú dài ngày", "Riêng tư"],
     },
   ],
 
@@ -64,19 +82,19 @@ export const hotel = {
 
   testimonials: [
     {
-      name: "Khách lưu trú",
+      name: "Khách công tác",
       content:
-        "Phòng sạch, vị trí thuận tiện, phù hợp cho chuyến đi công tác ngắn ngày.",
+        "Phòng sạch, yên tĩnh, vị trí thuận tiện để di chuyển trong khu vực Liên Chiểu.",
     },
     {
       name: "Khách du lịch",
       content:
-        "Không gian sáng, dễ đặt phòng, nhân viên hỗ trợ nhanh và thân thiện.",
+        "Không gian phòng thoáng, dễ đặt phòng, nhân viên hỗ trợ nhanh và thân thiện.",
     },
     {
       name: "Gia đình nhỏ",
       content:
-        "Vị trí dễ di chuyển, gần biển và các tiện ích xung quanh khu Liên Chiểu.",
+        "Vị trí dễ tìm, gần các tiện ích xung quanh, phù hợp cho chuyến đi ngắn ngày tại Đà Nẵng.",
     },
   ],
 
@@ -84,7 +102,7 @@ export const hotel = {
     {
       question: "Le House có gần biển không?",
       answer:
-        "Có. Khách sạn nằm tại khu vực Liên Chiểu, thuận tiện di chuyển ra biển Nguyễn Tất Thành.",
+        "Có. Le House nằm tại khu vực Liên Chiểu, thuận tiện di chuyển ra biển Nguyễn Tất Thành và các điểm tiện ích xung quanh.",
     },
     {
       question: "Khách sạn có phù hợp đi công tác không?",
@@ -92,14 +110,14 @@ export const hotel = {
         "Có. Phòng có Wi-Fi, máy lạnh, bàn làm việc và không gian nghỉ ngơi riêng tư.",
     },
     {
-      question: "Có phòng cho gia đình không?",
+      question: "Le House có mấy cơ sở?",
       answer:
-        "Có thể liên hệ trước qua hotline hoặc Zalo để được tư vấn loại phòng phù hợp số lượng khách.",
+        "Le House có 2 cơ sở tại khu vực Liên Chiểu, gồm 134–136 Lê Văn Thịnh và 97 Phú Lộc 22.",
     },
     {
       question: "Đặt phòng bằng cách nào?",
       answer:
-        "Khách có thể gọi hotline hoặc nhắn Zalo để kiểm tra phòng trống và nhận giá tốt.",
+        "Khách có thể gọi hotline hoặc nhắn Zalo để kiểm tra phòng trống, nhận báo giá và được tư vấn cơ sở phù hợp.",
     },
   ],
 };
