@@ -11,10 +11,10 @@ const reasons = [
     title: "Tiện nghi cơ bản đầy đủ",
     desc: "Wi-Fi, máy lạnh, TV, phòng tắm riêng và khu vực sinh hoạt thoải mái.",
   },
-  {
-    title: "Dễ liên hệ đặt phòng",
-    desc: "Khách có thể nhắn Zalo hoặc gọi hotline để kiểm tra phòng trống nhanh.",
-  },
+ {
+  title: "Đặt phòng thuận tiện",
+  desc: "Khách có thể xem giá, chọn hình thức lưu trú và đặt phòng trực tiếp trên website.",
+},
 ];
 
 export default function WhyChoose() {
