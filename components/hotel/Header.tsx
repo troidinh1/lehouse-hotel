@@ -1,10 +1,10 @@
-import { hotel, phoneLink, zaloLink } from "@/data/hotel";
+import { hotel, phoneLink } from "@/data/hotel";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-        <a href="#" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0F2F3A] text-sm font-extrabold text-[#C9A45C] shadow-sm">
             LH
           </div>
@@ -21,25 +21,35 @@ export default function Header() {
 
         <nav className="hidden items-center gap-1 rounded-full border border-black/5 bg-[#F4EFE4]/70 p-1 text-sm font-bold text-[#5F6673] md:flex">
           <a
-            href="#rooms"
+            href="/#rooms"
             className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
           >
             Hạng phòng
           </a>
+
           <a
-            href="#amenities"
+            href="/booking"
+            className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
+          >
+            Đặt phòng
+          </a>
+
+          <a
+            href="/#amenities"
             className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
           >
             Tiện nghi
           </a>
+
           <a
-            href="#location"
+            href="/#location"
             className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
           >
             Vị trí
           </a>
+
           <a
-            href="#gallery"
+            href="/#gallery"
             className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
           >
             Hình ảnh
@@ -55,8 +65,7 @@ export default function Header() {
           </a>
 
           <a
-            href={zaloLink}
-            target="_blank"
+            href="/booking"
             className="rounded-full bg-[#0F2F3A] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:-translate-y-0.5 hover:bg-[#09232C]"
           >
             Đặt phòng

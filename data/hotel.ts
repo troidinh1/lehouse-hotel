@@ -121,6 +121,44 @@ export const hotel = {
     },
   ],
 };
+export const bookingRooms = [
+  {
+    id: "standard",
+    name: "Phòng tiêu chuẩn",
+    price: 400000,
+    available: 5,
+    image: "/images/lehouse/room-1.jpg",
+    desc: "Phù hợp cho 1–2 khách, nghỉ ngắn ngày hoặc đi công tác.",
+  },
+  {
+    id: "double",
+    name: "Phòng đôi tiện nghi",
+    price: 550000,
+    available: 3,
+    image: "/images/lehouse/room-2.jpg",
+    desc: "Phù hợp cho cặp đôi, bạn bè hoặc gia đình nhỏ.",
+  },
+  {
+    id: "studio",
+    name: "Studio lưu trú",
+    price: 700000,
+    available: 2,
+    image: "/images/lehouse/room-3.jpg",
+    desc: "Không gian rộng hơn, phù hợp khách lưu trú dài ngày.",
+  },
+];
 
+export const paymentMethods = [
+  {
+    id: "pay-at-hotel",
+    name: "Thanh toán tại khách sạn",
+    desc: "Khách thanh toán trực tiếp khi nhận phòng.",
+  },
+  {
+    id: "bank-transfer",
+    name: "Chuyển khoản giữ phòng",
+    desc: "Nhân viên sẽ gửi thông tin chuyển khoản sau khi xác nhận phòng.",
+  },
+];
 export const zaloLink = `https://zalo.me/${hotel.zalo}`;
 export const phoneLink = `tel:${hotel.hotline.replace(/\s/g, "")}`;

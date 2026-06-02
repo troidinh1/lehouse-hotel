@@ -1,4 +1,4 @@
-import { hotel, phoneLink, zaloLink } from "@/data/hotel";
+import { hotel, phoneLink } from "@/data/hotel";
 
 export default function Hero() {
   return (
@@ -32,11 +32,10 @@ export default function Hero() {
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row md:justify-start">
             <a
-              href={zaloLink}
-              target="_blank"
+              href="/booking"
               className="rounded-full bg-[#0F2F3A] px-7 py-4 text-center text-base font-extrabold text-white shadow-xl shadow-[#0F2F3A]/20 transition hover:-translate-y-0.5 hover:bg-[#09232C]"
             >
-              Đặt phòng qua Zalo
+              Đặt phòng ngay
             </a>
 
             <a
