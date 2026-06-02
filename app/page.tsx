@@ -1,6 +1,8 @@
 import Header from "@/components/hotel/Header";
 import Hero from "@/components/hotel/Hero";
+import BookingStrip from "@/components/hotel/BookingStrip";
 import WhyChoose from "@/components/hotel/WhyChoose";
+import GuestTypes from "@/components/hotel/GuestTypes";
 import Rooms from "@/components/hotel/Rooms";
 import Amenities from "@/components/hotel/Amenities";
 import Location from "@/components/hotel/Location";
@@ -16,7 +18,9 @@ export default function Home() {
     <main className="min-h-screen bg-white pb-20 md:pb-0">
       <Header />
       <Hero />
+      <BookingStrip />
       <WhyChoose />
+      <GuestTypes />
       <Rooms />
       <Amenities />
       <Location />

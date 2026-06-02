@@ -1,4 +1,4 @@
-import { hotel, phoneLink, zaloLink } from "@/data/hotel";
+import { phoneLink, zaloLink } from "@/data/hotel";
 
 export default function MobileCTA() {
   return (
@@ -6,7 +6,7 @@ export default function MobileCTA() {
       <div className="grid grid-cols-2 gap-3">
         <a
           href={phoneLink}
-          className="rounded-2xl border border-[#0F2F3A]/20 px-4 py-3 text-center text-sm font-extrabold text-[#0F2F3A]"
+          className="rounded-2xl border border-[#0F2F3A]/20 px-4 py-3 text-center text-sm font-black text-[#0F2F3A]"
         >
           Gọi ngay
         </a>
@@ -14,7 +14,7 @@ export default function MobileCTA() {
         <a
           href={zaloLink}
           target="_blank"
-          className="rounded-2xl bg-[#0F2F3A] px-4 py-3 text-center text-sm font-extrabold text-white"
+          className="rounded-2xl bg-[#0F2F3A] px-4 py-3 text-center text-sm font-black text-white"
         >
           Đặt phòng
         </a>

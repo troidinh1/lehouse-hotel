@@ -10,16 +10,16 @@ export default function Header() {
           </div>
 
           <div className="leading-tight">
-            <p className="text-base font-extrabold tracking-tight text-gray-950">
+            <p className="text-base font-extrabold tracking-tight text-[#111827]">
               {hotel.shortName}
             </p>
-            <p className="text-xs font-medium text-gray-500">
+            <p className="text-xs font-medium text-[#6B7280]">
               Hotel & Studio
             </p>
           </div>
         </a>
 
-        <nav className="hidden items-center gap-8 text-sm font-semibold text-gray-700 md:flex">
+        <nav className="hidden items-center gap-8 text-sm font-semibold text-[#6B7280] md:flex">
           <a href="#rooms" className="hover:text-[#0F2F3A]">
             Hạng phòng
           </a>
@@ -45,7 +45,7 @@ export default function Header() {
           <a
             href={zaloLink}
             target="_blank"
-            className="rounded-full bg-[#0F2F3A] px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-[#09232c]"
+            className="rounded-full bg-[#0F2F3A] px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-[#09232C]"
           >
             Đặt phòng
           </a>
