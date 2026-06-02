@@ -1,38 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-:root {
-  --color-primary: #0F2F3A;
-  --color-primary-dark: #09232C;
-  --color-gold: #C9A45C;
-  --color-cream: #FAF7F0;
-  --color-cream-strong: #F4EFE4;
+  --color-primary: #0f2f3a;
+  --color-primary-dark: #09232c;
+  --color-gold: #c9a45c;
+  --color-cream: #faf7f0;
+  --color-cream-strong: #f4efe4;
   --color-text: #111827;
-  --color-muted: #5F6673;
+  --color-muted: #5f6673;
+  --color-border: rgba(15, 47, 58, 0.12);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -40,6 +20,71 @@ html {
 }
 
 body {
+  margin: 0;
   color: var(--color-text);
   background: #ffffff;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-primary);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Giúp khi bấm menu #rooms, #amenities... không bị header che mất */
+section {
+  scroll-margin-top: 90px;
+}
+
+/* Scrollbar nhẹ, nhìn chuyên nghiệp hơn trên desktop */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4efe4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 47, 58, 0.35);
+  border-radius: 999px;
+  border: 2px solid #f4efe4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 47, 58, 0.55);
+}
+
+/* Mobile: chừa khoảng trống cho thanh CTA cố định dưới cùng */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 72px;
+  }
 }

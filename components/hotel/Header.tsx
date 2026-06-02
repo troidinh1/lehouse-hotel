@@ -13,7 +13,7 @@ export default function Header() {
             <p className="text-base font-extrabold tracking-tight text-[#111827]">
               {hotel.shortName}
             </p>
-            <p className="text-xs font-medium text-[#6B7280]">
+            <p className="hidden text-xs font-medium text-[#6B7280] sm:block">
               Hotel & Studio
             </p>
           </div>

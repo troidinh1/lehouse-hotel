@@ -18,18 +18,14 @@ export default function BookingStrip() {
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Loại lưu trú
             </p>
-            <p className="mt-1 font-black text-[#0F2F3A]">
-              Hotel & Studio
-            </p>
+            <p className="mt-1 font-black text-[#0F2F3A]">Hotel & Studio</p>
           </div>
 
           <div className="rounded-2xl bg-[#F4EFE4] p-4">
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#C9A45C]">
               Hotline
             </p>
-            <p className="mt-1 font-black text-[#0F2F3A]">
-              {hotel.hotline}
-            </p>
+            <p className="mt-1 font-black text-[#0F2F3A]">{hotel.hotline}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 md:grid-cols-1">
