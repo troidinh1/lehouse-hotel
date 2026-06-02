@@ -12,10 +12,10 @@ export default function FinalCTA() {
           Sẵn sàng lưu trú tại Le House?
         </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/75">
-          Chọn ngày lưu trú, loại phòng và gửi yêu cầu đặt phòng. Le House sẽ
-          liên hệ xác nhận tình trạng phòng và mức giá phù hợp nhất.
-        </p>
+       <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/75">
+  Chọn ngày lưu trú, xem giá theo qua đêm hoặc cả ngày, sau đó chọn hạng phòng
+  phù hợp để hoàn tất đặt phòng trực tiếp trên website.
+</p>
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a
