@@ -2,9 +2,9 @@ import { hotel, zaloLink } from "@/data/hotel";
 
 export default function Rooms() {
   return (
-    <section id="rooms" className="bg-[#F4EFE4] px-4 py-14 md:px-6 md:py-20">
+    <section id="rooms" className="bg-[#F4EFE4] px-4 py-14 md:px-6 md:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 md:grid-cols-[1.15fr_0.85fr] md:items-end">
+        <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr] md:items-end">
           <div>
             <p className="font-black uppercase tracking-[0.25em] text-[#C9A45C]">
               Hạng phòng
@@ -14,14 +14,14 @@ export default function Rooms() {
             </h2>
           </div>
 
-          <p className="max-w-lg leading-8 text-[#5F6673] md:justify-self-end">
+          <p className="max-w-lg text-[15px] leading-7 text-[#5F6673] md:justify-self-end md:text-base md:leading-8">
             Giá phòng có thể thay đổi theo ngày, số lượng khách và thời điểm
             đặt. Liên hệ trực tiếp để được tư vấn phòng trống và nhận mức giá
             tốt nhất.
           </p>
         </div>
 
-        <div className="mt-10 grid gap-7 md:grid-cols-3">
+        <div className="mt-8 grid gap-7 md:mt-12 md:grid-cols-3">
           {hotel.rooms.map((room) => (
             <div
               key={room.name}
@@ -31,7 +31,7 @@ export default function Rooms() {
                 <img
                   src={room.image}
                   alt={room.name}
-                  className="h-64 w-full object-cover transition duration-700 group-hover:scale-105 md:h-72"
+                  className="h-64 w-full object-cover transition duration-700 group-hover:scale-105 md:h-80"
                 />
 
                 <div className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-sm font-black text-[#0F2F3A] shadow-sm">
@@ -39,12 +39,12 @@ export default function Rooms() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-6 md:p-7">
                 <h3 className="text-2xl font-black text-[#111827]">
                   {room.name}
                 </h3>
 
-                <p className="mt-3 leading-7 text-[#5F6673]">
+                <p className="mt-3 text-[15px] leading-7 text-[#5F6673] md:text-base">
                   {room.desc}
                 </p>
 
@@ -62,7 +62,7 @@ export default function Rooms() {
                 <a
                   href={zaloLink}
                   target="_blank"
-                  className="mt-auto inline-flex w-full justify-center rounded-full bg-[#0F2F3A] px-5 py-3 font-black text-white transition hover:-translate-y-0.5 hover:bg-[#09232C]"
+                  className="mt-6 inline-flex w-full justify-center rounded-full bg-[#0F2F3A] px-5 py-3 font-black text-white transition hover:-translate-y-0.5 hover:bg-[#09232C] md:mt-auto"
                 >
                   Hỏi giá phòng này
                 </a>

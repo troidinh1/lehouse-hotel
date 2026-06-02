@@ -85,6 +85,6 @@ section {
 /* Mobile: chừa khoảng trống cho thanh CTA cố định dưới cùng */
 @media (max-width: 768px) {
   body {
-    padding-bottom: 72px;
+    padding-bottom: 66px;
   }
 }

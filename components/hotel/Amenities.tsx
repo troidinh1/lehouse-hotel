@@ -1,6 +1,6 @@
 import { hotel } from "@/data/hotel";
 
-const icons = ["◎", "❄", "▣", "✦", "▤", "▱", "☏", "⌂"];
+const icons = ["✓", "✓", "✓", "✓", "✓", "✓", "✓", "✓"];
 
 export default function Amenities() {
   return (
@@ -13,7 +13,7 @@ export default function Amenities() {
           <h2 className="mt-3 text-3xl font-black tracking-tight text-[#111827] md:text-5xl">
             Đầy đủ tiện ích cho một kỳ nghỉ thoải mái
           </h2>
-          <p className="mt-5 leading-8 text-[#6B7280]">
+          <p className="mt-5 leading-8 text-[#5F6673]">
             Le House tập trung vào trải nghiệm lưu trú gọn gàng, sạch sẽ và tiện
             lợi. Phù hợp với khách cần nơi nghỉ riêng tư, dễ di chuyển và dễ đặt
             phòng.
@@ -24,9 +24,9 @@ export default function Amenities() {
           {hotel.amenities.map((item, index) => (
             <div
               key={item}
-              className="rounded-[1.5rem] border border-black/5 bg-[#FAF7F0] p-5 text-center shadow-sm transition hover:-translate-y-1 hover:bg-white hover:shadow-lg"
+              className="rounded-[1.5rem] border border-black/5 bg-[#F4EFE4] p-5 shadow-sm transition hover:-translate-y-1 hover:bg-white hover:shadow-lg"
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0F2F3A] text-xl font-black text-[#C9A45C]">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0F2F3A] text-base font-black text-[#C9A45C]">
                 {icons[index]}
               </div>
               <p className="font-black text-[#111827]">{item}</p>

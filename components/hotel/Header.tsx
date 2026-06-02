@@ -19,17 +19,29 @@ export default function Header() {
           </div>
         </a>
 
-        <nav className="hidden items-center gap-8 text-sm font-semibold text-[#6B7280] md:flex">
-          <a href="#rooms" className="hover:text-[#0F2F3A]">
+        <nav className="hidden items-center gap-1 rounded-full border border-black/5 bg-[#F4EFE4]/70 p-1 text-sm font-bold text-[#5F6673] md:flex">
+          <a
+            href="#rooms"
+            className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
+          >
             Hạng phòng
           </a>
-          <a href="#amenities" className="hover:text-[#0F2F3A]">
+          <a
+            href="#amenities"
+            className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
+          >
             Tiện nghi
           </a>
-          <a href="#location" className="hover:text-[#0F2F3A]">
+          <a
+            href="#location"
+            className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
+          >
             Vị trí
           </a>
-          <a href="#gallery" className="hover:text-[#0F2F3A]">
+          <a
+            href="#gallery"
+            className="rounded-full px-4 py-2 transition hover:bg-white hover:text-[#0F2F3A] hover:shadow-sm"
+          >
             Hình ảnh
           </a>
         </nav>
@@ -37,7 +49,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             href={phoneLink}
-            className="hidden rounded-full border border-[#0F2F3A]/20 px-4 py-2 text-sm font-bold text-[#0F2F3A] hover:bg-[#FAF7F0] sm:block"
+            className="hidden rounded-full border border-[#0F2F3A]/20 px-4 py-2 text-sm font-bold text-[#0F2F3A] transition hover:bg-[#F4EFE4] sm:block"
           >
             {hotel.hotline}
           </a>
@@ -45,7 +57,7 @@ export default function Header() {
           <a
             href={zaloLink}
             target="_blank"
-            className="rounded-full bg-[#0F2F3A] px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-[#09232C]"
+            className="rounded-full bg-[#0F2F3A] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0F2F3A]/15 transition hover:-translate-y-0.5 hover:bg-[#09232C]"
           >
             Đặt phòng
           </a>
