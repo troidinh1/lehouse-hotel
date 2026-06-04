@@ -16,7 +16,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white pb-20 md:pb-0">
+    <main className="min-h-screen bg-white pt-[72px] pb-20 md:pb-0">
       <Header />
 
       <Hero />
